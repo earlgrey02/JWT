@@ -1,8 +1,7 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("org.springframework.boot") version "3.2.0"
     id("io.spring.dependency-management") version "1.1.4"
+    id("jacoco")
     kotlin("jvm") version "1.9.20"
     kotlin("plugin.spring") version "1.9.20"
 }
@@ -28,13 +27,56 @@ dependencies {
     testImplementation("io.projectreactor:reactor-test")
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "17"
+tasks {
+    compileKotlin {
+        kotlinOptions {
+            freeCompilerArgs += "-Xjsr305=strict"
+            jvmTarget = "17"
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+        finalizedBy(jacocoTestReport)
+    }
+
+    bootJar {
+        archiveFileName.set("quizit.jar")
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                element = "CLASS"
+
+                limit {
+                    counter = "LINE"
+                    value = "COVEREDRATIO"
+                    minimum = BigDecimal("0.8")
+                }
+
+                limit {
+                    counter = "METHOD"
+                    value = "COVEREDRATIO"
+                    minimum = BigDecimal("0.8")
+                }
+
+                excludes = listOf(
+                    "**.*Configuration*"
+                )
+            }
+        }
+    }
+
+    jacocoTestReport {
+        reports {
+            html.required.set(true)
+            xml.required.set(true)
+            finalizedBy(jacocoTestCoverageVerification)
+        }
     }
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+jacoco {
+    toolVersion = "0.8.8"
 }
