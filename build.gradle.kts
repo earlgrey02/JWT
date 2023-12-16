@@ -1,12 +1,13 @@
 plugins {
     id("io.spring.dependency-management") version "1.1.4"
     id("jacoco")
+    id("maven-publish")
     kotlin("jvm") version "1.9.20"
     kotlin("plugin.spring") version "1.9.20"
 }
 
 group = "com.github"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -85,4 +86,16 @@ tasks {
 
 jacoco {
     toolVersion = "0.8.8"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github"
+            artifactId = "jwt"
+            version = "1.0.0"
+
+            from(components["java"])
+        }
+    }
 }
