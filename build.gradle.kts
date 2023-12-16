@@ -67,7 +67,8 @@ tasks {
 
                 excludes = listOf(
                     "**.*Configuration*",
-                    "**.*Filter*"
+                    "**.*Authentication*",
+                    "**.*Filter*",
                 )
             }
         }
