@@ -1,13 +1,13 @@
 plugins {
-    id("org.springframework.boot") version "3.2.0"
     id("io.spring.dependency-management") version "1.1.4"
     id("jacoco")
+    id("maven-publish")
     kotlin("jvm") version "1.9.20"
     kotlin("plugin.spring") version "1.9.20"
 }
 
 group = "com.github"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -18,22 +18,21 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+    implementation("org.springframework.boot:spring-boot-starter:3.2.0")
+    implementation("org.springframework:spring-webflux:6.1.2")
+    implementation("org.springframework.security:spring-security-core:6.2.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.2.2")
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
+    compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.1")
     testImplementation("io.kotest:kotest-runner-junit5:5.6.2")
     testImplementation("io.kotest:kotest-assertions-core:5.6.2")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.2")
     testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0")
     testImplementation("com.ninja-squad:springmockk:3.0.1")
 }
 
@@ -48,10 +47,6 @@ tasks {
     test {
         useJUnitPlatform()
         finalizedBy(jacocoTestReport)
-    }
-
-    bootJar {
-        archiveFileName.set("quizit.jar")
     }
 
     jacocoTestCoverageVerification {
@@ -73,7 +68,8 @@ tasks {
 
                 excludes = listOf(
                     "**.*Configuration*",
-                    "**.*Filter*"
+                    "**.*Authentication*",
+                    "**.*Filter*",
                 )
             }
         }
@@ -90,4 +86,16 @@ tasks {
 
 jacoco {
     toolVersion = "0.8.8"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github"
+            artifactId = "jwt"
+            version = "1.0.0"
+
+            from(components["java"])
+        }
+    }
 }
