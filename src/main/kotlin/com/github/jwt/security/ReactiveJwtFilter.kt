@@ -16,7 +16,7 @@ class ReactiveJwtFilter(
         Mono.justOrEmpty(exchange.request.headers.getFirst(HttpHeaders.AUTHORIZATION))
             .filter { it.startsWith("Bearer ") }
             .switchIfEmpty { Mono.error(IllegalArgumentException("Authorization header is invalid.")) }
-            .map { jwtProvider.getAuthentication(it) }
+            .map { jwtProvider.getAuthentication(it.substring(7)) }
             .flatMap {
                 chain.filter(exchange)
                     .contextWrite(ReactiveSecurityContextHolder.withAuthentication(it))
