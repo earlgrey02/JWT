@@ -30,9 +30,9 @@ class JwtProvider(
     private fun createToken(claims: Claims, expire: Long): String =
         Date().let {
             Jwts.builder()
+                .setClaims(claims)
                 .setIssuedAt(it)
                 .setExpiration(Date(it.time + expire))
-                .setClaims(claims)
                 .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact()
         }
