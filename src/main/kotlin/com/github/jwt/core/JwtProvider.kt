@@ -1,5 +1,6 @@
 package com.github.jwt.core
 
+import com.github.jwt.exception.jwtExceptionCatching
 import com.github.jwt.security.JwtAuthentication
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
@@ -20,19 +21,23 @@ class JwtProvider(
         createToken(authentication.toClaims(), refreshTokenExpire)
 
     fun getAuthentication(token: String): JwtAuthentication =
-        Jwts.parserBuilder()
-            .setSigningKey(secretKey)
-            .build()
-            .parseClaimsJws(token)
-            .body
-            .toAuthentication()
+        jwtExceptionCatching {
+            Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
+                .body
+                .toAuthentication()
+        }
 
-    private fun createToken(claims: Claims, expire: Long): String =
-        Date().let {
+    fun createToken(claims: Claims, expire: Long): String =
+        jwtExceptionCatching {
+            val now = Date()
+
             Jwts.builder()
                 .setClaims(claims)
-                .setIssuedAt(it)
-                .setExpiration(Date(it.time + expire))
+                .setIssuedAt(now)
+                .setExpiration(Date(now.time + expire))
                 .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact()
         }
