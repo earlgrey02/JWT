@@ -1,9 +1,9 @@
 package com.github.jwt
 
+import com.github.jwt.exception.JwtException
 import com.github.jwt.fixture.INVALID_TOKEN
 import com.github.jwt.fixture.createJwtAuthentication
 import com.github.jwt.fixture.jwtProvider
-import io.jsonwebtoken.JwtException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.equals.shouldBeEqual

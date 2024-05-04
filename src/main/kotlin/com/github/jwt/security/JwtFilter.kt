@@ -19,9 +19,8 @@ class JwtFilter(
         val header = request.getHeader(HttpHeaders.AUTHORIZATION)
 
         if (header.startsWith("Bearer ")) {
-            val authentication = jwtProvider.getAuthentication(header.substring(7))
-
-            SecurityContextHolder.getContext().authentication = authentication
+            runCatching { jwtProvider.getAuthentication(header.substring(7)) }
+                .onSuccess { SecurityContextHolder.getContext().authentication = it }
         }
 
         return filterChain.doFilter(request, response)
