@@ -1,15 +1,20 @@
 package com.github.jwt
 
+import com.github.jwt.config.JwtConfiguration
 import com.github.jwt.exception.JwtException
-import com.github.jwt.fixture.INVALID_TOKEN
-import com.github.jwt.fixture.createJwtAuthentication
-import com.github.jwt.fixture.jwtProvider
+import com.github.jwt.fixture.*
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.string.shouldNotBeBlank
 
 class JwtProviderTest : BehaviorSpec() {
+    private val jwtProvider = JwtConfiguration().jwtProvider(
+        secretKey = SECRET_KEY,
+        accessTokenExpire = ACCESS_TOKEN_EXPIRE,
+        refreshTokenExpire = REFRESH_TOKEN_EXPIRE
+    )
+
     init {
         Given("인증 정보가 주어진 경우") {
             val authentication = createJwtAuthentication()
