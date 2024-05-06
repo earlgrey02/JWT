@@ -8,8 +8,18 @@ import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.context.annotation.Bean
 import java.util.concurrent.TimeUnit
 
+/**
+ * [AutoConfiguration] class that registers [JwtProvider] as a [Bean].
+ */
 @AutoConfiguration
 class JwtConfiguration {
+    /**
+     * [JwtProvider] with properties injected.
+     *
+     * @param secretKey Secret key
+     * @param accessTokenExpire Access token validity time(m)
+     * @param refreshTokenExpire Access token validity time(m)
+     */
     @Bean
     fun jwtProvider(
         @Value("\${jwt.secretKey}")
