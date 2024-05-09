@@ -15,7 +15,7 @@ import javax.crypto.SecretKey
  * @param minute Minute as a [Long]
  * @return milliseconds as a [Long]
  */
-internal fun minutesToMillis(minute: Long): Long = TimeUnit.MINUTES.toMillis(minute)
+fun minutesToMillis(minute: Long): Long = TimeUnit.MINUTES.toMillis(minute)
 
 /**
  * Method to retrieve bearer token from header.
@@ -23,7 +23,7 @@ internal fun minutesToMillis(minute: Long): Long = TimeUnit.MINUTES.toMillis(min
  * @receiver Header string
  * @return Token as a [String]
  */
-internal fun String.toBearerToken(): Token =
+fun String.toBearerToken(): Token =
     if (startsWith("Bearer ")) substring(7) else throw JwtException("Authorization header is invalid.")
 
 /**
@@ -32,7 +32,7 @@ internal fun String.toBearerToken(): Token =
  * @receiver Secret string
  * @return Secret key
  */
-internal fun String.toSecretKey(): SecretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(this))
+fun String.toSecretKey(): SecretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(this))
 
 /**
  * Method to convert header to map.
@@ -40,7 +40,7 @@ internal fun String.toSecretKey(): SecretKey = Keys.hmacShaKeyFor(Decoders.BASE6
  * @receiver Header
  * @return [Map]
  */
-internal fun Header<*>.toMap(): Map<String, String> =
+fun Header<*>.toMap(): Map<String, String> =
     entries.associate { it.key to it.value.toString() }
 
 /**
@@ -49,5 +49,5 @@ internal fun Header<*>.toMap(): Map<String, String> =
  * @receiver Payload
  * @return [Map]
  */
-internal fun Claims.toMap(): Map<String, String> =
+fun Claims.toMap(): Map<String, String> =
     entries.associate { it.key to it.value.toString() }
