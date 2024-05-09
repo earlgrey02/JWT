@@ -5,19 +5,19 @@ import com.github.jwt.exception.JwtException
 import com.github.jwt.fixture.*
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.matchers.equals.shouldBeEqual
+import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.string.shouldNotBeBlank
 
 class JwtProviderTest : BehaviorSpec() {
     private val jwtProvider = JwtConfiguration().jwtProvider(
-        secretKey = SECRET_KEY,
+        secret = SECRET,
         accessTokenExpire = ACCESS_TOKEN_EXPIRE,
         refreshTokenExpire = REFRESH_TOKEN_EXPIRE
     )
 
     init {
         Given("인증 정보가 주어진 경우") {
-            val authentication = createJwtAuthentication()
+            val authentication = createDefaultJwtAuthentication()
 
             When("액세스 토큰을 발급하면") {
                 val accessToken = jwtProvider.createAccessToken(authentication)
@@ -37,14 +37,14 @@ class JwtProviderTest : BehaviorSpec() {
         }
 
         Given("유효한 토큰이 주어진 경우") {
-            val authentication = createJwtAuthentication()
+            val authentication = createDefaultJwtAuthentication()
             val accessToken = jwtProvider.createAccessToken(authentication)
 
             When("인증 정보를 추출하면") {
                 val extractedAuthentication = jwtProvider.getAuthentication(accessToken)
 
                 Then("토큰에 대한 인증 정보가 주어진다.") {
-                    extractedAuthentication shouldBeEqual authentication
+                    extractedAuthentication shouldBeEqualToComparingFields authentication
                 }
             }
         }

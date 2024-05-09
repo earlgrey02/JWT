@@ -7,7 +7,7 @@ package com.github.jwt.exception
  * @return Return value of lambda
  * @throws JwtException
  */
-internal fun <T> jwtExceptionCatching(init: () -> T): T =
+fun <T> jwtExceptionCatching(init: () -> T): T =
     runCatching(init)
         .onFailure { throw JwtException(it.message) }
         .getOrThrow()

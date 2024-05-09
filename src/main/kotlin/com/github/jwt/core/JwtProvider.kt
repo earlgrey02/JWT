@@ -1,126 +1,70 @@
 package com.github.jwt.core
 
-import com.github.jwt.exception.jwtExceptionCatching
+import com.github.jwt.Token
 import com.github.jwt.security.JwtAuthentication
-import io.jsonwebtoken.Claims
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
-import org.springframework.security.core.authority.SimpleGrantedAuthority
-import java.util.*
 import javax.crypto.SecretKey
 
 /**
- * A class containing basic JWT functions.
- * Generally used as [org.springframework.context.annotation.Bean] by [com.github.jwt.config.JwtConfiguration].
+ * Specification of basic JWT functions.
  *
- * @property secretKey Secret key
- * @property accessTokenExpire Access token validity time(m)
- * @property refreshTokenExpire Access token validity time(m)
+ * @throws [com.github.jwt.exception.JwtException]
  */
-class JwtProvider(
-    private val secretKey: SecretKey,
-    private val accessTokenExpire: Long,
-    private val refreshTokenExpire: Long
-) {
+interface JwtProvider {
     /**
-     * Method to create access token.
+     * Method to generate token.
      *
-     * @param authentication [JwtAuthentication] to contain in access token
-     * @return Access token
+     * @param header Header as a [Map]
+     * @param payload Header as a [Map]
+     * @param expire Token validity time(Milliseconds)
+     * @return Token as a [String]
      */
-    fun createAccessToken(authentication: JwtAuthentication): String =
-        createToken(authentication.toMap(), accessTokenExpire)
-
-    /**
-     * Method to create refresh token.
-     *
-     * @param authentication [JwtAuthentication] to contain in refresh token
-     * @return Refresh token
-     */
-    fun createRefreshToken(authentication: JwtAuthentication): String =
-        createToken(authentication.toMap(), refreshTokenExpire)
+    fun createToken(
+        header: Map<String, String>,
+        payload: Map<String, String>,
+        expire: Long,
+        secretKey: SecretKey
+    ): Token
 
     /**
-     * Method to get [JwtAuthentication] from token.
+     * Method to generate token.
      *
-     * @param token Access token or refresh token
-     * @return [JwtAuthentication] used to generate token
-     * @throws com.github.jwt.exception.JwtException
+     * @param payload Header as a [Map]
+     * @param expire Token validity time(Milliseconds)
+     * @return Token as a [String]
      */
-    fun getAuthentication(token: String): JwtAuthentication =
-        jwtExceptionCatching {
-            Jwts.parserBuilder()
-                .setSigningKey(secretKey)
-                .build()
-                .parseClaimsJws(token)
-                .body
-                .toAuthentication()
-        }
+    fun createToken(payload: Map<String, String>, expire: Long, secretKey: SecretKey): Token
 
     /**
-     * Method to common token.
+     * Method to generate token.
      *
-     * @param claims Token payload as [Map]
-     * @param expire Token validity time(ms)
-     * @return Token
-     * @throws com.github.jwt.exception.JwtException
+     * @param authentication Authentication as a [JwtAuthentication]
+     * @param expire Token validity time(Milliseconds)
+     * @return Token as a [String]
      */
-    fun createToken(claims: Map<String, String>, expire: Long): String =
-        jwtExceptionCatching {
-            val now = Date()
-
-            Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(Date(now.time + expire))
-                .signWith(secretKey, SignatureAlgorithm.HS256)
-                .compact()
-        }
+    fun createToken(authentication: JwtAuthentication, expire: Long, secretKey: SecretKey): Token
 
     /**
-     * Method to common token.
+     * Method to get header.
      *
-     * @param claims Token payload as [Claims]
-     * @param expire Token validity time(ms)
-     * @return Token
-     * @throws com.github.jwt.exception.JwtException
+     * @param token Token as a [String]
+     * @return Header as a [Map]
      */
-    private fun createToken(claims: Claims, expire: Long): String =
-        jwtExceptionCatching {
-            val now = Date()
-
-            Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(Date(now.time + expire))
-                .signWith(secretKey, SignatureAlgorithm.HS256)
-                .compact()
-        }
+    fun getHeader(token: Token): Map<String, String>
 
     /**
-     * Method to get [Claims] from [JwtAuthentication].
+     * Method to get payload.
      *
-     * @receiver [JwtAuthentication]
-     * @return [Claims]
+     * @param token Token as a [String]
+     * @return Payload as a [Map]
      */
-    private fun JwtAuthentication.toMap(): Map<String, String> =
-        hashMapOf(
-            "id" to id,
-            "authorities" to authorities.joinToString(",") { it.authority }
-        )
+    fun getPayload(token: Token): Map<String, String>
 
     /**
-     * Method to get [JwtAuthentication] from [Claims].
+     * Method to get authentication.
+     * Implemented differently depending on the [JwtAuthentication] implementation used.
      *
-     * @receiver [Claims]
-     * @return [JwtAuthentication]
+     * @param token Token as a [String]
+     * @return Authentication as a [JwtAuthentication]
      */
-    private fun Claims.toAuthentication(): JwtAuthentication =
-        JwtAuthentication(
-            id = get("id") as String,
-            authorities = (get("authorities") as String)
-                .split(",")
-                .map(::SimpleGrantedAuthority)
-                .toHashSet()
-        )
+    fun getAuthentication(token: Token): JwtAuthentication
 }
