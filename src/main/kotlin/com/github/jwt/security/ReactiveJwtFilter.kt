@@ -1,7 +1,8 @@
 package com.github.jwt.security
 
-import com.github.jwt.core.JwtProvider
+import com.github.jwt.core.DefaultJwtProvider
 import com.github.jwt.exception.JwtException
+import com.github.jwt.util.toBearerToken
 import org.springframework.http.HttpHeaders
 import org.springframework.security.core.context.ReactiveSecurityContextHolder
 import org.springframework.web.server.ServerWebExchange
@@ -12,25 +13,22 @@ import reactor.kotlin.core.publisher.onErrorResume
 
 /**
  * [WebFilter] that performs JWT authorization.
- * Register and use with [WebFilterChain] on Spring WebFlux
+ * Register and use with [SecurityWebFilterChain] on Spring Web MVC.
  *
- * @property jwtProvider [JwtProvider]
+ * @property jwtProvider [com.github.jwt.core.DefaultJwtProvider] which provides JWT functions
  */
 class ReactiveJwtFilter(
-    private val jwtProvider: JwtProvider
+    private val jwtProvider: DefaultJwtProvider
 ) : WebFilter {
     /**
-     * This is a reactive way to perform JWT authentication.
+     * Method to perform authorization through bearer token.
      *
-     * @param exchange HTTP request and response
+     * @param exchange
      * @param chain
-     * @return [Mono] returned by chain
      */
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> =
-        Mono.justOrEmpty(exchange.request.headers.getFirst(HttpHeaders.AUTHORIZATION))
-            .filter { it.startsWith("Bearer ") }
-            .switchIfEmpty(Mono.error(JwtException("Authorization header is invalid.")))
-            .map { jwtProvider.getAuthentication(it.substring(7)) }
+        Mono.just(exchange.request.headers.getFirst(HttpHeaders.AUTHORIZATION) ?: "")
+            .map { jwtProvider.getAuthentication(it.toBearerToken()) }
             .flatMap {
                 chain.filter(exchange)
                     .contextWrite(ReactiveSecurityContextHolder.withAuthentication(it))
