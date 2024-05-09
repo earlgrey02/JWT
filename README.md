@@ -2,7 +2,7 @@
 
 > **JWT(JSON Web Token) module for Spring framework**
 
-## How to use
+## Settings
 
 ### build.gradle.kts
 
@@ -18,7 +18,7 @@ dependencies {
 
 Add the dependency after add JitPack repository to your build file.
 
-### application.yml
+### application.yaml
 
 ```yaml
 jwt:
@@ -28,15 +28,6 @@ jwt:
 ```
 
 Set secret key and token expiration period in minutes.
-
-### Create token
-
-```kotlin
-val map = mapOf("username" to "earlgrey02")
-jwtProvider.createToken(map, 100000)
-```
-
-You can use `JwtProvider` to create basic tokens as well as access and refresh tokens.
 
 ## JWT Authorization
 
@@ -49,7 +40,7 @@ class SecurityConfiguration {
     @Bean
     fun filterChain(
         http: HttpSecurity,
-        jwtProvider: JwtProvider
+        jwtFilter: JwtFilter
     ): SecurityFilterChain {
         http {
             csrf { disable() }
@@ -65,11 +56,11 @@ class SecurityConfiguration {
     }
 
     @Bean
-    fun jwtFilter(jwtProvider: JwtProvider): JwtFilter = JwtFilter(jwtProvider)
+    fun jwtFilter(jwtProvider: DefaultJwtProvider): JwtFilter = JwtFilter(jwtProvider)
 }
 ```
 
-register `JwtFilter` to `SecurityFilterChain`.
+Register `JwtFilter` to `SecurityFilterChain`.
 
 ```kotlin
 @RestController
@@ -79,7 +70,7 @@ class TestController {
         @AuthenticationPrincipal
         Principal principal
     ): ResponseEntity<Int> {
-        val jwtAuthentication = principal as JwtAUthentication
+        val jwtAuthentication = principal as DefaultJwtAuthentication
 
         return ResponseEntity.ok()
             .body(jwtAuthentication.id)
@@ -111,7 +102,7 @@ class ReactiveSecurityConfiguration {
         }
 
     @Bean
-    fun jwtFilter(jwtProvider: JwtProvider): ReactiveJwtFilter =
+    fun jwtFilter(jwtProvider: DefaultJwtProvider): ReactiveJwtFilter =
         ReactiveJwtFilter(jwtProvider)
 }
 ```
