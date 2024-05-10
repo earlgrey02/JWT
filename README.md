@@ -22,7 +22,7 @@ Add the dependency after add JitPack repository to your build file.
 
 ```yaml
 jwt:
-  secretKey: ...
+  secret: ...
   accessTokenExpire: 30
   refreshTokenExpire: 120
 ```
