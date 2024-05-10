@@ -13,7 +13,7 @@ import reactor.kotlin.core.publisher.onErrorResume
 
 /**
  * [WebFilter] that performs JWT authorization.
- * Register and use with [SecurityWebFilterChain] on Spring Web MVC.
+ * Register and use with [SecurityWebFilterChain] on Spring Reactive Security.
  *
  * @property jwtProvider [com.github.jwt.core.DefaultJwtProvider] which provides JWT functions
  */

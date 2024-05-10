@@ -11,7 +11,7 @@ import org.springframework.web.filter.OncePerRequestFilter
 
 /**
  * [OncePerRequestFilter] that performs JWT authorization.
- * Register and use with [SecurityFilterChain] on Spring Web MVC.
+ * Register and use with [SecurityFilterChain] on Spring Security.
  *
  * @property jwtProvider [com.github.jwt.core.DefaultJwtProvider] which provides JWT functions
  */

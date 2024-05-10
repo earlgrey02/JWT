@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean
 
 /**
  * [AutoConfiguration] class that registers [DefaultJwtProvider] as a Bean.
- * Class that is disabled when another [JwtProvider] exists as a Bean.
+ * Configuration that is disabled when another [JwtProvider] exists as a Bean.
  */
 @AutoConfiguration
 @ConditionalOnMissingBean(JwtProvider::class)
