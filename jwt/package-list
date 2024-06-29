@@ -1,0 +1,71 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.github.jwt.config////PointingToDeclaration/jwt/com.github.jwt.config/index.html
+$dokka.location:com.github.jwt.config/JwtConfiguration///PointingToDeclaration/jwt/com.github.jwt.config/-jwt-configuration/index.html
+$dokka.location:com.github.jwt.config/JwtConfiguration/JwtConfiguration/#/PointingToDeclaration/jwt/com.github.jwt.config/-jwt-configuration/-jwt-configuration.html
+$dokka.location:com.github.jwt.config/JwtConfiguration/jwtProvider/#kotlin.String#kotlin.Long#kotlin.Long/PointingToDeclaration/jwt/com.github.jwt.config/-jwt-configuration/jwt-provider.html
+$dokka.location:com.github.jwt.core////PointingToDeclaration/jwt/com.github.jwt.core/index.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider///PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/index.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider/AbstractJwtProvider/#javax.crypto.SecretKey/PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/-abstract-jwt-provider.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider/createToken/#com.github.jwt.security.JwtAuthentication#kotlin.Long#javax.crypto.SecretKey/PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/create-token.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider/createToken/#com.github.jwt.security.JwtAuthentication#kotlin.Long/PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/create-token.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider/createToken/#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.Long#javax.crypto.SecretKey/PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/create-token.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider/createToken/#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.Long/PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/create-token.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider/createToken/#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.Long#javax.crypto.SecretKey/PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/create-token.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider/getHeader/#kotlin.String/PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/get-header.html
+$dokka.location:com.github.jwt.core/AbstractJwtProvider/getPayload/#kotlin.String/PointingToDeclaration/jwt/com.github.jwt.core/-abstract-jwt-provider/get-payload.html
+$dokka.location:com.github.jwt.core/DefaultJwtProvider///PointingToDeclaration/jwt/com.github.jwt.core/-default-jwt-provider/index.html
+$dokka.location:com.github.jwt.core/DefaultJwtProvider/DefaultJwtProvider/#javax.crypto.SecretKey#kotlin.Long#kotlin.Long/PointingToDeclaration/jwt/com.github.jwt.core/-default-jwt-provider/-default-jwt-provider.html
+$dokka.location:com.github.jwt.core/DefaultJwtProvider/createAccessToken/#com.github.jwt.security.JwtAuthentication/PointingToDeclaration/jwt/com.github.jwt.core/-default-jwt-provider/create-access-token.html
+$dokka.location:com.github.jwt.core/DefaultJwtProvider/createRefreshToken/#com.github.jwt.security.JwtAuthentication/PointingToDeclaration/jwt/com.github.jwt.core/-default-jwt-provider/create-refresh-token.html
+$dokka.location:com.github.jwt.core/DefaultJwtProvider/getAuthentication/#kotlin.String/PointingToDeclaration/jwt/com.github.jwt.core/-default-jwt-provider/get-authentication.html
+$dokka.location:com.github.jwt.core/DefaultJwtProvider/refresh/#kotlin.String/PointingToDeclaration/jwt/com.github.jwt.core/-default-jwt-provider/refresh.html
+$dokka.location:com.github.jwt.core/JwtProvider///PointingToDeclaration/jwt/com.github.jwt.core/-jwt-provider/index.html
+$dokka.location:com.github.jwt.core/JwtProvider/createToken/#com.github.jwt.security.JwtAuthentication#kotlin.Long#javax.crypto.SecretKey/PointingToDeclaration/jwt/com.github.jwt.core/-jwt-provider/create-token.html
+$dokka.location:com.github.jwt.core/JwtProvider/createToken/#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.Long#javax.crypto.SecretKey/PointingToDeclaration/jwt/com.github.jwt.core/-jwt-provider/create-token.html
+$dokka.location:com.github.jwt.core/JwtProvider/createToken/#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.Long#javax.crypto.SecretKey/PointingToDeclaration/jwt/com.github.jwt.core/-jwt-provider/create-token.html
+$dokka.location:com.github.jwt.core/JwtProvider/getAuthentication/#kotlin.String/PointingToDeclaration/jwt/com.github.jwt.core/-jwt-provider/get-authentication.html
+$dokka.location:com.github.jwt.core/JwtProvider/getHeader/#kotlin.String/PointingToDeclaration/jwt/com.github.jwt.core/-jwt-provider/get-header.html
+$dokka.location:com.github.jwt.core/JwtProvider/getPayload/#kotlin.String/PointingToDeclaration/jwt/com.github.jwt.core/-jwt-provider/get-payload.html
+$dokka.location:com.github.jwt.exception////PointingToDeclaration/jwt/com.github.jwt.exception/index.html
+$dokka.location:com.github.jwt.exception//jwtExceptionCatching/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jwt/com.github.jwt.exception/jwt-exception-catching.html
+$dokka.location:com.github.jwt.exception/JwtException///PointingToDeclaration/jwt/com.github.jwt.exception/-jwt-exception/index.html
+$dokka.location:com.github.jwt.exception/JwtException/JwtException/#kotlin.String?/PointingToDeclaration/jwt/com.github.jwt.exception/-jwt-exception/-jwt-exception.html
+$dokka.location:com.github.jwt.exception/JwtException/message/#/PointingToDeclaration/jwt/com.github.jwt.exception/-jwt-exception/message.html
+$dokka.location:com.github.jwt.security////PointingToDeclaration/jwt/com.github.jwt.security/index.html
+$dokka.location:com.github.jwt.security/DefaultJwtAuthentication///PointingToDeclaration/jwt/com.github.jwt.security/-default-jwt-authentication/index.html
+$dokka.location:com.github.jwt.security/DefaultJwtAuthentication/DefaultJwtAuthentication/#kotlin.String#kotlin.collections.Set[org.springframework.security.core.GrantedAuthority]/PointingToDeclaration/jwt/com.github.jwt.security/-default-jwt-authentication/-default-jwt-authentication.html
+$dokka.location:com.github.jwt.security/DefaultJwtAuthentication/getPayload/#/PointingToDeclaration/jwt/com.github.jwt.security/-default-jwt-authentication/get-payload.html
+$dokka.location:com.github.jwt.security/DefaultJwtAuthentication/id/#/PointingToDeclaration/jwt/com.github.jwt.security/-default-jwt-authentication/id.html
+$dokka.location:com.github.jwt.security/DefaultJwtAuthentication/roles/#/PointingToDeclaration/jwt/com.github.jwt.security/-default-jwt-authentication/roles.html
+$dokka.location:com.github.jwt.security/JwtAuthentication///PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/index.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/JwtAuthentication/#kotlin.collections.Set[org.springframework.security.core.GrantedAuthority]/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/-jwt-authentication.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/getAuthorities/#/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/get-authorities.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/getCredentials/#/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/get-credentials.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/getDetails/#/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/get-details.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/getName/#/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/get-name.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/getPayload/#/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/get-payload.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/getPrincipal/#/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/get-principal.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/isAuthenticated/#/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/is-authenticated.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/roles/#/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/roles.html
+$dokka.location:com.github.jwt.security/JwtAuthentication/setAuthenticated/#kotlin.Boolean/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-authentication/set-authenticated.html
+$dokka.location:com.github.jwt.security/JwtFilter///PointingToDeclaration/jwt/com.github.jwt.security/-jwt-filter/index.html
+$dokka.location:com.github.jwt.security/JwtFilter/JwtFilter/#com.github.jwt.core.DefaultJwtProvider/PointingToDeclaration/jwt/com.github.jwt.security/-jwt-filter/-jwt-filter.html
+$dokka.location:com.github.jwt.security/ReactiveJwtFilter///PointingToDeclaration/jwt/com.github.jwt.security/-reactive-jwt-filter/index.html
+$dokka.location:com.github.jwt.security/ReactiveJwtFilter/ReactiveJwtFilter/#com.github.jwt.core.DefaultJwtProvider/PointingToDeclaration/jwt/com.github.jwt.security/-reactive-jwt-filter/-reactive-jwt-filter.html
+$dokka.location:com.github.jwt.security/ReactiveJwtFilter/filter/#org.springframework.web.server.ServerWebExchange#org.springframework.web.server.WebFilterChain/PointingToDeclaration/jwt/com.github.jwt.security/-reactive-jwt-filter/filter.html
+$dokka.location:com.github.jwt.util////PointingToDeclaration/jwt/com.github.jwt.util/index.html
+$dokka.location:com.github.jwt.util//minutesToMillis/#kotlin.Long/PointingToDeclaration/jwt/com.github.jwt.util/minutes-to-millis.html
+$dokka.location:com.github.jwt.util//toBearerToken/kotlin.String#/PointingToDeclaration/jwt/com.github.jwt.util/to-bearer-token.html
+$dokka.location:com.github.jwt.util//toMap/io.jsonwebtoken.Claims#/PointingToDeclaration/jwt/com.github.jwt.util/to-map.html
+$dokka.location:com.github.jwt.util//toMap/io.jsonwebtoken.Header[*]#/PointingToDeclaration/jwt/com.github.jwt.util/to-map.html
+$dokka.location:com.github.jwt.util//toSecretKey/kotlin.String#/PointingToDeclaration/jwt/com.github.jwt.util/to-secret-key.html
+$dokka.location:com.github.jwt////PointingToDeclaration/jwt/com.github.jwt/index.html
+$dokka.location:com.github.jwt/Token///PointingToDeclaration/jwt/com.github.jwt/-token/index.html
+com.github.jwt
+com.github.jwt.config
+com.github.jwt.core
+com.github.jwt.exception
+com.github.jwt.security
+com.github.jwt.util
+
