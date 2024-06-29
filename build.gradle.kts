@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.github"
-version = "1.0.0"
+version = "1.1.1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -83,6 +83,10 @@ tasks {
             finalizedBy(jacocoTestCoverageVerification)
         }
     }
+
+    dokkaHtml {
+        version = "1.1.1"
+    }
 }
 
 jacoco {
@@ -94,7 +98,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github"
             artifactId = "jwt"
-            version = "1.0.0"
+            version = "1.1.1"
 
             from(components["java"])
         }
